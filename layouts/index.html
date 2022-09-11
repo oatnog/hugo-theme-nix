@@ -9,11 +9,11 @@
 	<body>
 		{{ partial "header.html" . }}
 		<div class="flex-wrapper">
-			<div class="container wrapper">
+			<main class="container">
 				{{ with .Site.Params.ProfilePicture }}
 				<div class="row">
-					<div class="col-sm-3 col-centered">
-						<img alt="profile-picture" class="img-responsive img-circle user-picture center-block" src="{{.}}">
+					<div class="col-sm-3 col-centered text-center">
+						<img alt="profile-picture" class="img-fluid rounded-circle user-picture" src="{{.}}">
 					</div>
 				</div>
 				{{ end }}
@@ -29,12 +29,20 @@
 				</div>
 				{{ with .Site.Params.About }}
 				<div class="row">
-					<div class="col-md-4 col-md-offset-4 user-description text-center">
+					<div class="col-lg-4 offset-lg-4 user-description text-center">
 						<p>{{ . }}</p>
 					</div>
 				</div>
 				{{ end }}
-			</div>
+				{{ if .Site.Params.blogOnIndex }}
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<h1>Blog</h1>
+					</div>
+				</div>
+				{{ partial "postlist.html" . }}
+				{{ end }}
+			</main>
 			{{ partial "footer.html" . }}
 		</div>
 	</body>
